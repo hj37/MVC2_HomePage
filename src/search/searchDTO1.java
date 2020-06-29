@@ -3,10 +3,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import javax.servlet.http.HttpServlet;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class searchDTO {
+public class searchDTO1{
     public static void main(String[] args) throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=sOy5hEZhdouT3bt0KCjqLrVKs9CplOTB%2F8ZV%2BTxKxftTiPvsPtd1IiIAxjy66VtyIiQRk7r5AP0SNnW7J5yArw%3D%3D" + 
@@ -20,7 +30,7 @@ public class searchDTO {
         urlBuilder.append("&" + URLEncoder.encode("trainGradeCode","UTF-8") + "=" + URLEncoder.encode("00", "UTF-8")); /*차량종류코드*/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
+        conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
         System.out.println("Response code: " + conn.getResponseCode());
         BufferedReader rd;
@@ -36,6 +46,35 @@ public class searchDTO {
         }
         rd.close();
         conn.disconnect();
-        System.out.println(sb.toString());
+      System.out.println(sb.toString());
+        
+        try {
+        	Node arrplacename = null;
+        	Node depplacename = null;
+        	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        	
+        	FileOutputStream output = new FileOutputStream("./WebContent/SearchXml/PM10");
+        	output.write(sb.toString().getBytes());
+        	output.close();
+        	
+        	Document doc = dBuilder.parse("./WebContent/SearchXml/PM10");
+        	doc.getDocumentElement().normalize();
+        	
+        	Element body = (Element) doc.getElementsByTagName("body").item(0);
+        	Element items = (Element) body.getElementsByTagName("items").item(0);
+        	Element item = (Element) items.getElementsByTagName("item").item(0);
+        	
+        	arrplacename = item.getElementsByTagName("arrplacename").item(0);
+        	depplacename = item.getElementsByTagName("depplacename").item(0);
+        	System.out.println(arrplacename.getNodeName());
+        	System.out.println(arrplacename.getChildNodes().item(0).getNodeValue());
+        	
+        	System.out.println(depplacename.getNodeName());
+        	System.out.println(depplacename.getChildNodes().item(0).getNodeValue());
+        }catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
     }
 }

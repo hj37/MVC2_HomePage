@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
 <!doctype html>
 <html lang="en">
 
@@ -28,7 +32,9 @@
     <link rel="stylesheet" href="../css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="../css/style.css">
+    
 </head>
+ <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>    
 
 <body>
   
@@ -42,7 +48,7 @@
                     <div class="banner_text text-center">
                         <div class="banner_text_iner">
                             <h1> Saintmartine</h1>
-                            <p>Let’s start your journey with us, your dream will come true</p>
+                            <p>Letâs start your journey with us, your dream will come true</p>
                             <a href="#" class="btn_1">Discover Now</a>
                         </div>
                     </div>
@@ -60,7 +66,7 @@
                     <div class="booking_menu">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                            <a class="nav-link active" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="true">hotel</a>
+                            <a class="nav-link active" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="true">기차표 검색</a>
                             </li>
                             <li class="nav-item">
                             <a class="nav-link" id="tricket-tab" data-toggle="tab" href="#tricket" role="tab" aria-controls="tricket" aria-selected="false">tricket</a>
@@ -76,32 +82,68 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
                                 <div class="booking_form">
-                                    <form action="#">
+                                    <form name = "commentForm" action="${contextPath}/join" method="post">
+                              
                                         <div class="form-row">
-                                            <div class="form_colum">
-                                                <select class="nc_select">
-                                                    <option selected>Choosace place </option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+											<div class="input-group mb-3" style="width:25%; height:25%" >
+												<input type="text" class="form-control"
+													placeholder="출발역"
+													aria-label="Recipient's username"
+													aria-describedby="button-addon2"
+													id="txtGoStart"
+													name="txtGoStart"
+													title="출발역" 
+                                                	autocomplete="off"
+                                                >
+                                                <input type="hidden" id="code1" name="code1" >
+												<div class="input-group-append">
+													<button class="btn btn-outline-secondary" type="button"
+														id="button-addon2" onclick="btnPopWin(1,'txtGoStart');">검색</button>
+												</div>
+											
+											</div>
+											<div class="input-group mb-3" style="width:25%; height:25%" >
+												<input type="text" class="form-control"
+													placeholder="도착역"
+													aria-label="Recipient's username"
+													aria-describedby="button-addon2"
+													id="txtGoEnd"
+													name="txtGoEnd"
+													title="도착역" 
+                                                	autocomplete="off"
+                                                >
+                                                <input type="hidden" id="code2" name="code2" >
+												<div class="input-group-append">
+													<button class="btn btn-outline-secondary" type="button"
+														id="button-addon2" onclick="btnPopWin(2,'txtGoEnd');">검색</button>
+												</div>
+											</div>
+                                           
+  												<div class="form-group">
+    											<select class="form-control" id="exampleFormControlSelect1" name="form_control">
+                                                    <option selected>기차종류</option>
+                                                    <option value="00">KTX</option>                                                    
+                                                    <option value="01">새마을호</option>
+                                                    <option value="02">무궁화</option>
+                                                    <option value="03">통근열차</option>
+                                                    <option value="04">누리로</option>
+                                                    <option value="06">AREX직통</option>
+                                                    <option value="07">KTX-산천</option>
+                                                    <option value="08">ITX-새마을</option>
+                                                    <option value="09">청춘</option>
+                                                    <option value="10">KTX-산천</option>
+                                                    <option value="15">ITX-청춘</option>
+                                                    <option value="17">SRT</option>
+                                                    
                                                 </select>
                                             </div>
-                                            <div class="form_colum">
-                                                <input id="datepicker_1" placeholder="Check in date">
+                                            
+                                            <div class="form_group" style="margin-top: 5px">
+                                                <input id="datepicker_1" placeholder="출발일" name="datepicker_1">
                                             </div>
-                                            <div class="form_colum">
-                                                <input id="datepicker_2" placeholder="Check in date">
-                                            </div>
-                                            <div class="form_colum">
-                                                <select class="nc_select">
-                                                    <option selected>Persone </option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </div>
-                                            <div class="form_btn">
-                                                <a href="#" class="btn_1">search</a>
+                                            
+                                            <div class="form_btn" style="padding-right: 20px">
+                                                <a href="#" id="checkJson" class="btn btn-secondary">search</a>
                                             </div>
                                         </div>
                                     </form>
@@ -616,6 +658,11 @@
     <!-- footer part end-->
 
     <!-- jquery plugins here-->
+    
+    
+    
+    <script src="../js/search.js"></script>
+    
     <script src="../js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="../js/popper.min.js"></script>
