@@ -6,33 +6,7 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Martine</title>
-    <link rel="icon" href="../img/favicon.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="../css/animate.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <!-- themify CSS -->
-    <link rel="stylesheet" href="../css/themify-icons.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="../css/flaticon.css">
-    <!-- fontawesome CSS -->
-    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
-    <!-- magnific CSS -->
-    <link rel="stylesheet" href="../css/magnific-popup.css">
-    <link rel="stylesheet" href="../css/gijgo.min.css">
-    <!-- niceselect CSS -->
-    <link rel="stylesheet" href="../css/nice-select.css">
-    <!-- slick CSS -->
-    <link rel="stylesheet" href="../css/slick.css">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    
+
 </head>
  <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>    
 
@@ -82,7 +56,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
                                 <div class="booking_form">
-                                    <form name = "commentForm" action="${contextPath}/join" method="post">
+                                    <form name = "commentForm" action="${contextPath}/join/do" method="post">
                               
                                         <div class="form-row">
 											<div class="input-group mb-3" style="width:25%; height:25%" >
@@ -143,7 +117,8 @@
                                             </div>
                                             
                                             <div class="form_btn" style="padding-right: 20px">
-                                                <a href="#" id="checkJson" class="btn btn-secondary">search</a>
+                                                <a href="${contextPath}/json/do" id="checkJson" class="btn btn-secondary">search</a>
+                                                
                                             </div>
                                         </div>
                                     </form>

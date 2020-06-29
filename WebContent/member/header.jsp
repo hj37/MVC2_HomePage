@@ -7,7 +7,7 @@
 <html>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Martine</title>
     <link rel="icon" href="../img/favicon.png">
@@ -85,7 +85,7 @@
                                         <a class="nav-link" href="${contextPath}/mem/index.do">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="../about.jsp">About</a>
+                                        <a class="nav-link" href="${contextPath}/brd/list.do">게시판</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../packages.jsp">packages</a>
